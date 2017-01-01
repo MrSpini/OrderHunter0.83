@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 485660d367cd72d499fb71707d2562ce
+timeCreated: 1480425122
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - SF UI Display
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 21234705fd2a844498f233183203b8a4, type: 3}
+  - {fileID: 12800000, guid: 388cec3e90a911b41880b5be26d0ef62, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
