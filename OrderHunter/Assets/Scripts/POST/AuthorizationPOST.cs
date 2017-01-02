@@ -30,7 +30,6 @@ public class AuthorizationPOST : MonoBehaviour
 	public GameObject ADName;
 	public GameObject ADLastName;
 	public GameObject ADMail;
-	public GameObject ADCity;
 	public GameObject ADQuestion;
 	public GameObject ADPhone;
 	public GameObject ADBack;
@@ -100,7 +99,7 @@ public class AuthorizationPOST : MonoBehaviour
 		ADName.SetActive (false);
 		ADLastName.SetActive (false);
 		ADMail.SetActive (false);
-		ADCity.SetActive (false);
+
 		ADQuestion.SetActive (false);
 		ADPhone.SetActive (false);
 		ADBack.SetActive (false);
@@ -136,7 +135,6 @@ public class AuthorizationPOST : MonoBehaviour
 			ADName.SetActive (true);
 			ADLastName.SetActive (true);
 			ADMail.SetActive (true);
-			ADCity.SetActive (true);
 			ADQuestion.SetActive (true);
 			ADPhone.SetActive (true);
 			ADBack.SetActive (true);
@@ -152,7 +150,6 @@ public class AuthorizationPOST : MonoBehaviour
 		ADName.SetActive (false);
 		ADLastName.SetActive (false);
 		ADMail.SetActive (false);
-		ADCity.SetActive (false);
 		ADQuestion.SetActive (false);
 		ADPhone.SetActive (false);
 		ADBack.SetActive (false);
