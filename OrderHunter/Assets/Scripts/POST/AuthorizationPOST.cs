@@ -18,11 +18,10 @@ public class AuthorizationPOST : MonoBehaviour
 	public InputField Email;
 	public InputField FirstName;
 	public InputField LastName;
-	public InputField City;
-
+    public Text DdCity;
 	public Text Result;
 
-	public GameObject Sprites;
+	public GameObject Sprites,Dd;
 	public GameObject ButtonOK;
 	public GameObject ResultText;
 	public GameObject Waiting;
@@ -59,8 +58,10 @@ public class AuthorizationPOST : MonoBehaviour
 		POST(URLpath);
 		StartCoroutine (WaiterActive());
 		StartCoroutine (WaiterAnswerUI ());
-
+        print(JsonString.ToString());
 	}
+
+  
 
 	private  void POST (string URL)
 	{ 
@@ -74,8 +75,9 @@ public class AuthorizationPOST : MonoBehaviour
 						pars.Add ("email", Email.text.ToString());
 						pars.Add ("first_name", FirstName.text.ToString());
 						pars.Add ("last_name", LastName.text.ToString());
-						pars.Add ("city", City.text.ToString());
-						
+                        pars.Add ("city",  DdCity.text.ToString());//City.text.ToString());
+                        print(DdCity.text.ToString());
+
 					var response = WebClient.UploadValues(URL, pars);
 					string parse = Encoding.Default.GetString(response);
 
@@ -105,6 +107,7 @@ public class AuthorizationPOST : MonoBehaviour
 		ADIcons.SetActive (false);
 		Waiting.SetActive (true);
 		Registration.SetActive (true);
+        Dd.SetActive(false);
 	}
 
 	IEnumerator WaiterDeactive()
@@ -239,6 +242,10 @@ public class AuthorizationPOST : MonoBehaviour
 			Result.text = "Не корректные символы в поле - Город";
 			Retry ();
 			break;
+        case "1064":
+            Result.text = "Город не найден";
+            Retry();
+            break;
 		case "200":
 			Result.text = "Регистрация успешно завершена";
 			ButtonOK.SetActive (true);
@@ -246,14 +253,6 @@ public class AuthorizationPOST : MonoBehaviour
 		}
         }
         catch{
-            if (JsonString == null)
-            {
-                Result.color = new Color32(255, 132, 132, 255);
-                Result.text = "Нет сети";
-                ButtonOK.SetActive(true);
-            }
-            else
-                Result.color = new Color32(255,255,255,255);
         }
 	}
 }
