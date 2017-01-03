@@ -80,13 +80,9 @@ public class ShopScrollList : MonoBehaviour
             Content.GetComponent<RectTransform>().localPosition = new Vector2(this.transform.localPosition.x, 0);
 
 			RefreshDisplay ();
-			//ConnctSocket();
         }
       
-	}
-
-
-
+	}       
 
     public void ConnctSocket()
 	{  
@@ -194,9 +190,4 @@ public class ShopScrollList : MonoBehaviour
 			sampleButton.Setup(itemList[i], this);
         }
     }
-
-	public void OnMouseDown()
-	{
-		print (itemList[0].ID);
-	}
 }
