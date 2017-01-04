@@ -49,7 +49,7 @@ public class Item
 
 public class ShopScrollList : MonoBehaviour 
 {
-	int r=0;
+	//int r=0;
 	string json;
 	string json1;
     private JsonData itemData;
@@ -65,9 +65,14 @@ public class ShopScrollList : MonoBehaviour
     void Start()
     {
 		ConnctSocket();
-		RefreshDisplay ();
+        StartCoroutine (RD());
+         RefreshDisplay ();
     }
-
+    IEnumerator RD()
+    {
+        yield return new WaitForSeconds (0.2f);
+        RefreshDisplay ();
+    }
     void Update () 
     {   
          if (ScrollbarVertical.value <= 0 )
