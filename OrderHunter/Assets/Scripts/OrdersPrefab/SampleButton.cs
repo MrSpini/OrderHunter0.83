@@ -13,11 +13,13 @@ public class SampleButton : MonoBehaviour
 	public Text MetroOne, MetroTwo; 
 	public Text Address; 
 	private Item item; 
-	private ShopScrollList scrollList; 
+	private ShopScrollList scrollList;
 
+    public Sprite sprite1;
+    public Sprite sprite2;
+    public Sprite sprite3;
 
-
-	void Start () 
+    void Start () 
     { 
         buttonComponent.onClick.AddListener(HandleClick);
     }
@@ -28,8 +30,20 @@ public class SampleButton : MonoBehaviour
 	public void Setup(Item currentItem, ShopScrollList currentScrollList) 
 	{ 
 		item = currentItem; 
-		nameLabel.text = item.Mass.ToString(); 
-		iconImage.sprite = item.IconCompany; 
+		nameLabel.text = item.Mass.ToString();
+        switch(System.Convert.ToInt32(item.DeliveryType))
+        {
+            case 1:
+                iconImage.GetComponent<Image>().sprite= sprite1;
+                break;
+            case 2:
+                iconImage.GetComponent<Image>().sprite = sprite2;
+                break;
+            case 3:
+                iconImage.GetComponent<Image>().sprite = sprite3;
+                break;
+        }
+		
 		MetroIcos.sprite = item.MetroIco; 
 		priceText.text = item.Price; 
 		Address.text = item.AddresCount; 
