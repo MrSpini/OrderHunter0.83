@@ -42,14 +42,11 @@ public class Item
 	public string MetroIn; 
 	public string Time; 
 	public string AddresCount; 
-} 
-
-
-
+}
 
 public class ShopScrollList : MonoBehaviour 
 {
-	//int r=0;
+	int r=0;
 	string json;
 	string json1;
     private JsonData itemData;
@@ -64,15 +61,11 @@ public class ShopScrollList : MonoBehaviour
 
     void Start()
     {
+		
 		ConnctSocket();
-        StartCoroutine (RD());
-         RefreshDisplay ();
+		RefreshDisplay ();
     }
-    IEnumerator RD()
-    {
-        yield return new WaitForSeconds (0.2f);
-        RefreshDisplay ();
-    }
+
     void Update () 
     {   
          if (ScrollbarVertical.value <= 0 )
@@ -85,9 +78,9 @@ public class ShopScrollList : MonoBehaviour
             Content.GetComponent<RectTransform>().localPosition = new Vector2(this.transform.localPosition.x, 0);
 
 			RefreshDisplay ();
+			ConnctSocket();
         }
-      
-	}       
+	}
 
     public void ConnctSocket()
 	{  
@@ -106,19 +99,17 @@ public class ShopScrollList : MonoBehaviour
 			int count = itemData ["data"].Count; 
 
 			for (int i = 0; i < count; i++) { 
-				Item a = new Item (); 
-
-				a.ID = itemData ["data"] [i] ["id"].ToString (); 
+				Item a = new Item ();
+                
+                a.ID = itemData ["data"] [i] ["id"].ToString (); 
 				a.SourceDay = itemData ["data"] [i] ["source_day"].ToString (); 
 				a.Source_City = itemData ["data"] [i] ["source_city"].ToString (); 
 				a.OfferMode = itemData ["data"] [i] ["offer_mode"].ToString (); 
-				a.DeliveryType = itemData ["data"] [i] ["delivery_type"].ToString (); 
-				a.ObjectName = itemData ["data"] [i] ["object_name"].ToString (); 
+				a.DeliveryType = itemData ["data"] [i] ["delivery_type"].ToString ();
+                a.ObjectName = itemData ["data"] [i] ["object_name"].ToString (); 
 				a.Loading = itemData ["data"] [i] ["loading"].ToString (); 
 				a.Points = itemData ["data"] [i] ["points_data"].Count;
-
-				for (int j = 0; j < itemData ["data"] [i] ["points_data"].Count; j++) 
-                {
+				for (int j = 0; j < itemData ["data"] [i] ["points_data"].Count; j++) {
 					a.Point [j] = itemData ["data"] [i] ["points_data"] [j] ["point"].ToString (); 
 					a.ArriveDay [j] = itemData ["data"] [i] ["points_data"] [j] ["arrive_day"].ToString (); 
 					a.ArriveTime [j] = itemData ["data"] [i] ["points_data"] [j] ["arrive_time"].ToString (); 
@@ -128,7 +119,6 @@ public class ShopScrollList : MonoBehaviour
 					a.ContactFace [j] = itemData ["data"] [i] ["points_data"] [j] ["contact_face"].ToString (); 
 					a.PointMoney [j] = itemData ["data"] [i] ["points_data"] [j] ["point_money"].ToString (); 
 				}
-
 				a.Mass = itemData ["data"] [i] ["object_weight"].ToString () + "кг"; 
 				source_time_from = itemData ["data"] [i] ["source_time_from"].ToString (); 
 				source_time_to = itemData ["data"] [i] ["source_time_to"].ToString (); 
@@ -195,4 +185,9 @@ public class ShopScrollList : MonoBehaviour
 			sampleButton.Setup(itemList[i], this);
         }
     }
+
+	public void OnMouseDown()
+	{
+		print (itemList[0].ID);
+	}
 }
